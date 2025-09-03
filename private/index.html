@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Private | VersaCraft</title>
+  <style>
+    body{font-family:sans-serif;margin:2rem}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <h1>Private Area</h1>
+  <div id="gate">
+    <p>Enter passcode:</p>
+    <input id="pw" type="password" placeholder="\u2022\u2022\u2022\u2022\u2022"/>
+    <button id="go">Unlock</button>
+    <p id="err" style="color:#900;display:none;">Wrong passcode.</p>
+  </div>
+  <div id="content" class="hidden">
+    <h2>Restricted Content</h2>
+    <p>Put your sensitive info here. This gating is client-side; not truly secure.</p>
+  </div>
+<script>
+const HASH = "REPLACE_WITH_SHA256_HEX";
+async function sha256Hex(s){
+  const b = new TextEncoder().encode(s);
+  const d = await crypto.subtle.digest('SHA-256', b);
+  return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+document.getElementById("go").onclick = async function(){
+  const input = document.getElementById("pw").value;
+  const hash = await sha256Hex(input);
+  if(hash === HASH){
+    document.getElementById("gate").classList.add("hidden");
+    document.getElementById("content").classList.remove("hidden");
+  }else{
+    document.getElementById("err").style.display = "block";
+  }
+};
+</script>
+</body>
+</html>
