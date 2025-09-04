@@ -164,7 +164,13 @@
         <div class="col-md-6 col-lg-3">
           <div class="card service-card h-100 fade-in-up delay-3">
             <div class="card-body">
-              <div class="icon-wrap bg-green"><i class="bi bi-leaf"></i></div>
+              <!-- Inline plant icon for Plant Therapy (Services) -->
+                   <div class="icon-wrap bg-green">
+                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                       <path d="M12 20c3-2 3-6 0-8-3 2-3 6 0 8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                       <path d="M12 12c-2-3-1.5-6 1-8 2 2 3 5 1 8M12 12c-3-1-5-2-6.5-4 2.5-.5 5 .5 6.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                     </svg>
+                   </div>
               <h5 class="card-title mt-3">Plant Therapy</h5>
               <p class="card-text small text-muted">Green‑space design, plant care plans and wellness guidance that connect you to nature.</p>
             </div>
@@ -212,7 +218,14 @@
         <div class="col-md-4">
           <div class="card service-card h-100 fade-in-up">
             <div class="card-body">
-              <div class="icon-wrap bg-sec"><i class="bi bi-brain"></i></div>
+              <!-- Inline neurology icon for Insights -->
+                   <div class="icon-wrap bg-sec">
+                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                       <path d="M12 3v3m0 12v3M3 12h3m12 0h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                       <circle cx="12" cy="12" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+                       <path d="M9.5 10.5a2.5 2.5 0 0 1 5 0c0 1.7-2.5 1.3-2.5 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                     </svg>
+                   </div>
               <h5 class="card-title mt-3">Neurology &amp; Consciousness</h5>
               <p class="card-text small text-muted">Explore how the brain works, how the mind shapes reality, and how neuroscience meets ancient wisdom. We’ll share findings that inspire your own evolution.</p>
             </div>
@@ -230,7 +243,13 @@
         <div class="col-md-4">
           <div class="card service-card h-100 fade-in-up delay-2">
             <div class="card-body">
-              <div class="icon-wrap bg-wood"><i class="bi bi-flower2"></i></div>
+              <!-- Inline plant icon for Plant Therapy & Wellness (Insights) -->
+                   <div class="icon-wrap bg-wood">
+                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                       <path d="M12 20c3-2 3-6 0-8-3 2-3 6 0 8Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                       <path d="M12 12c-2-3-1.5-6 1-8 2 2 3 5 1 8M12 12c-3-1-5-2-6.5-4 2.5-.5 5 .5 6.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                     </svg>
+                   </div>
               <h5 class="card-title mt-3">Plant Therapy &amp; Wellness</h5>
               <p class="card-text small text-muted">Tips on plant care, green‑space design and how connecting with nature boosts wellbeing. We’ll also sprinkle in updates on our own plant therapy journey.</p>
             </div>
@@ -249,7 +268,7 @@
       <div class="row g-4">
         <div class="col-md-4">
           <div class="card lift h-100 fade-in-up">
-            <img src="smart_home_install.png" class="card-img-top" alt="Smart home installation illustration" />
+            <img src="smart_home_install.png" class="card-img-top" alt="Smart home installation" />
             <div class="card-body">
               <h5 class="card-title">Smart Home Install</h5>
               <p class="card-text small text-muted">A seamless network and automation setup blending style and functionality.</p>
@@ -258,7 +277,7 @@
         </div>
         <div class="col-md-4">
           <div class="card lift h-100 fade-in-up delay-1">
-            <img src="custom_woodworking.png" class="card-img-top" alt="Custom woodworking illustration" />
+            <img src="custom_woodworking.png" class="card-img-top" alt="Custom woodworking" />
             <div class="card-body">
               <h5 class="card-title">Custom Woodworking</h5>
               <p class="card-text small text-muted">Hand‑crafted furniture and built‑ins tailored to each space.</p>
@@ -267,7 +286,7 @@
         </div>
         <div class="col-md-4">
           <div class="card lift h-100 fade-in-up delay-2">
-            <img src="plant_therapy_design.png" class="card-img-top" alt="Plant therapy design illustration" />
+            <img src="plant_therapy_design.png" class="card-img-top" alt="Plant therapy design" />
             <div class="card-body">
               <h5 class="card-title">Plant Therapy Design</h5>
               <p class="card-text small text-muted">Green spaces designed to soothe and energize your environment.</p>
@@ -318,14 +337,28 @@
     <div class="container">
       <h2 class="mb-4 fw-bold text-center">Schedule</h2>
       <p class="text-center text-muted mb-4">Pick a time that works. Availability updates automatically when new events hit my Google Calendar.</p>
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <!-- Calendly inline embed -->
-          <div class="calendly-inline-widget"
-               data-url="YOUR_CALENDLY_URL"
-               style="min-width:320px;height:760px;"></div>
-        </div>
-      </div>
+      <!-- Quick booking buttons -->
+<div class="d-flex justify-content-center gap-3 mb-4">
+  <!-- Replace YOUR_HANDLE with your Calendly username -->
+  <a class="btn btn-primary"
+     href="https://calendly.com/YOUR_HANDLE/consult-30"
+     target="_blank" rel="noopener">
+    Book 30‑min Consult ($20)
+  </a>
+  <a class="btn btn-outline-primary"
+     href="https://calendly.com/YOUR_HANDLE/on-site-1hr"
+     target="_blank" rel="noopener">
+    Book On‑Site ($120)
+  </a>
+</div>
+<!-- Calendly inline embed -->
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="calendly-inline-widget"
+         data-url="https://calendly.com/YOUR_HANDLE?hide_landing_page_details=1&hide_gdpr_banner=1"
+         style="min-width:320px;height:760px;"></div>
+  </div>
+</div>
     </div>
   </section>
 
