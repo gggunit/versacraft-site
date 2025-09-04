@@ -335,30 +335,54 @@
   <!-- Schedule (Calendly Embed) -->
   <section id="schedule" class="py-5 section">
     <div class="container">
-      <h2 class="mb-4 fw-bold text-center">Schedule</h2>
-      <p class="text-center text-muted mb-4">Pick a time that works. Availability updates automatically when new events hit my Google Calendar.</p>
-      <!-- Quick booking buttons -->
-<div class="d-flex justify-content-center gap-3 mb-4">
-  <!-- Replace YOUR_HANDLE with your Calendly username -->
-  <a class="btn btn-primary"
-     href="https://calendly.com/YOUR_HANDLE/consult-30"
-     target="_blank" rel="noopener">
-    Book 30‑min Consult ($20)
-  </a>
-  <a class="btn btn-outline-primary"
-     href="https://calendly.com/YOUR_HANDLE/on-site-1hr"
-     target="_blank" rel="noopener">
-    Book On‑Site ($120)
-  </a>
-</div>
-<!-- Calendly inline embed -->
-<div class="card shadow-sm">
-  <div class="card-body">
-    <div class="calendly-inline-widget"
-         data-url="https://calendly.com/YOUR_HANDLE?hide_landing_page_details=1&hide_gdpr_banner=1"
-         style="min-width:320px;height:760px;"></div>
-  </div>
-</div>
+      <h2 class="mb-4 fw-bold">Schedule</h2>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="d-flex align-items-center mb-3">
+            <label class="me-2 small text-muted">Dates:</label>
+            <input id="cc-date-start" type="date" class="form-control form-control-sm me-2" />
+            <span class="small me-2">to</span>
+            <input id="cc-date-end" type="date" class="form-control form-control-sm me-3" />
+            <button id="cc-refresh" class="btn btn-sm btn-outline-secondary">Refresh</button>
+          </div>
+          <div id="cc-slots" class="row row-cols-2 row-cols-md-3 g-2"></div>
+          <p id="cc-empty" class="text-muted small d-none mt-2">No open slots in this window. Try other dates.</p>
+        </div>
+        <div class="col-lg-5">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Book a Slot</h5>
+              <form id="cc-book-form">
+                <div class="mb-2">
+                  <label class="form-label small">Selected slot</label>
+                  <input id="cc-selected" class="form-control form-control-sm" type="text" readonly>
+                </div>
+                <div class="mb-2">
+                  <label class="form-label small">Name</label>
+                  <input id="cc-name" class="form-control form-control-sm" required>
+                </div>
+                <div class="mb-2">
+                  <label class="form-label small">Email</label>
+                  <input id="cc-email" class="form-control form-control-sm" type="email" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small">Duration</label>
+                  <select id="cc-duration" class="form-select form-select-sm">
+                    <option value="30">30 minutes (consult)</option>
+                    <option value="60" selected>1 hour (on-site)</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary w-100" type="submit">Confirm Booking</button>
+                <div id="cc-status" class="small mt-2 text-muted"></div>
+              </form>
+            </div>
+          </div>
+          <p class="small text-muted mt-3">
+            $120 first hour, then $90/hr (billed in 30-minute increments). Consults are $20/30min;
+            if we can’t solve it during the video call, the $20 goes toward your first hour.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 

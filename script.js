@@ -47,3 +47,102 @@ document.getElementById("otherPaymentForm").addEventListener("submit", async (e)
   const modal = bootstrap.Modal.getInstance(document.getElementById("otherModal"));
   modal.hide();
 });
+
+// ===== ConsciousCraft schedule widget =====
+// Apps Script Web App URL (replace with your deployed script URL)
+const APP_URL = "<<PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE>>";
+
+function ccISO(d) { return d.toISOString().slice(0,10); }
+
+async function fetchSlots(start, end) {
+  const url = `${APP_URL}?action=slots&start=${start}&end=${end}`;
+  const res = await fetch(url, { method: 'GET' });
+  if (!res.ok) throw new Error('Failed to load slots');
+  return res.json();
+}
+
+function renderSlots(data) {
+  const wrap = document.getElementById('cc-slots');
+  const empty = document.getElementById('cc-empty');
+  wrap.innerHTML = '';
+  if (!data.slots || !data.slots.length) {
+    empty.classList.remove('d-none');
+    return;
+  }
+  empty.classList.add('d-none');
+
+  data.slots.forEach(s => {
+    const col = document.createElement('div');
+    col.className = 'col';
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn btn-outline-secondary w-100';
+    btn.textContent = s.label;
+    btn.onclick = () => {
+      document.getElementById('cc-selected').value = s.label;
+      document.getElementById('cc-selected').dataset.start = s.startISO;
+    };
+
+    col.appendChild(btn);
+    wrap.appendChild(col);
+  });
+}
+
+async function refreshSlots() {
+  const start = document.getElementById('cc-date-start').value;
+  const end   = document.getElementById('cc-date-end').value;
+  if (!start || !end) return;
+  const status = document.getElementById('cc-status');
+  status.textContent = 'Loading availability...';
+  try {
+    const data = await fetchSlots(start, end);
+    renderSlots(data);
+    status.textContent = '';
+  } catch(e) {
+    status.textContent = 'Could not load availability.';
+  }
+}
+
+async function bookSelected(e) {
+  e.preventDefault();
+  const startISO = document.getElementById('cc-selected').dataset.start;
+  const name     = document.getElementById('cc-name').value.trim();
+  const email    = document.getElementById('cc-email').value.trim();
+  const duration = parseInt(document.getElementById('cc-duration').value, 10);
+  const status   = document.getElementById('cc-status');
+
+  if (!startISO) { status.textContent = 'Pick a slot first.'; return; }
+
+  status.textContent = 'Booking...';
+  try {
+    const res = await fetch(APP_URL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ action: 'book', name, email, startISO, durationMins: duration })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      status.textContent = 'Booked! Check your email for the invite.';
+      setTimeout(refreshSlots, 800);
+    } else {
+      status.textContent = data.error || 'Could not book the slot.';
+    }
+  } catch (err) {
+    status.textContent = 'Booking failed.';
+  }
+}
+
+function initScheduler() {
+  const today = new Date();
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 14);
+  document.getElementById('cc-date-start').value = ccISO(today);
+  document.getElementById('cc-date-end').value   = ccISO(endDate);
+
+  document.getElementById('cc-refresh').addEventListener('click', refreshSlots);
+  document.getElementById('cc-book-form').addEventListener('submit', bookSelected);
+  refreshSlots();
+}
+
+document.addEventListener('DOMContentLoaded', initScheduler);
