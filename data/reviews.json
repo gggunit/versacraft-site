@@ -1,0 +1,58 @@
+[
+  {
+    "nameOrInitials": "A.B.",
+    "dateISO": "2025-03-12",
+    "rating": 5,
+    "quote": "Solved my wifi issues in 15 minutes—super patient and knowledgeable.",
+    "serviceTag": "Computer Help"
+  },
+  {
+    "nameOrInitials": "C.D.",
+    "dateISO": "2025-04-08",
+    "rating": 5,
+    "quote": "My succulents have never looked better! Great plant care advice.",
+    "serviceTag": "Outdoors & Plant Care"
+  },
+  {
+    "nameOrInitials": "E.F.",
+    "dateISO": "2025-05-19",
+    "rating": 5,
+    "quote": "Fixed my Outlook rules and automated my inbox. Life-changing.",
+    "serviceTag": "AI Automations"
+  },
+  {
+    "nameOrInitials": "G.H.",
+    "dateISO": "2025-06-01",
+    "rating": 5,
+    "quote": "The Reiki session was calming and supportive; I felt lighter afterwards.",
+    "serviceTag": "Reiki"
+  },
+  {
+    "nameOrInitials": "I.J.",
+    "dateISO": "2025-06-20",
+    "rating": 5,
+    "quote": "Mounted our TV securely and tidied up the cables. Excellent work.",
+    "serviceTag": "Mounting & Repairs"
+  },
+  {
+    "nameOrInitials": "K.L.",
+    "dateISO": "2025-07-15",
+    "rating": 5,
+    "quote": "Helped us move heavy furniture up three flights—careful and efficient.",
+    "serviceTag": "Heavy Lifting"
+  },
+  {
+    "nameOrInitials": "M.N.",
+    "dateISO": "2025-07-28",
+    "rating": 5,
+    "quote": "Built custom shelves with precision and a perfect finish.",
+    "serviceTag": "Light Carpentry"
+  },
+  {
+    "nameOrInitials": "O.P.",
+    "dateISO": "2025-08-12",
+    "rating": 5,
+    "quote": "Decluttered our garage and created an easy-to-follow organization system.",
+    "serviceTag": "Organization"
+  }
+]
