@@ -1,5 +1,6 @@
 import Link from "next/link";
-import ReviewList from "@/components/ReviewList";
+import ReviewList from "../../components/ReviewList";
+
 
 export default function HomePage() {
   return (
