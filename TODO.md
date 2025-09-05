@@ -1,5 +1,7 @@
-- [ ] Swap Basic Auth credentials on Vercel (BASIC_AUTH_USER / BASIC_AUTH_PASS).
-- [ ] Add Stripe test keys if desired; wire Payment Element.
-- [ ] Replace synthesized reviews with selected anonymized quotes from your logs.
-- [ ] (Optional) Enable Vercel Authentication for staging.
-- [ ] Add screenshots to PR and tighten copy in `/content/copy.md`.
+# TODO
+
+* Populate `data/reviews.json` with real anonymized quotes when available.
+* Update pricing bands and review counts in `content/copy.md` as the business evolves.
+* Add live Stripe Payment Element once test keys are available.
+* Consider swapping Calendly embed for Cal.com if desired.
+* Replace placeholder text and adjust styling to better align with brand guidelines.

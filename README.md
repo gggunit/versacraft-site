@@ -1,50 +1,35 @@
-# VersaCraft — Scheduling Portal & Services (Staging)
+# VersaCraft Solutions – Staging Site
 
-Private staging site (noindex + Basic Auth) for German's services.
+This is a staging site for VersaCraft Solutions built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/). It implements basic authentication and explicit `noindex` headers to avoid accidental search engine indexing. 
 
-## Stack
-- Next.js (App Router) + TypeScript
-- Tailwind CSS
-- Vercel (Hobby)
-- Calendly embed
-- Stripe (test placeholder)
+## Project Structure
 
-## Getting Started
+Key directories and files:
+
+- `app/` — Next.js App Router pages and layouts. The `app/(site)` route group contains all user‑facing pages such as home, services, pricing, reviews, availability, payments, and contact.
+- `components/` — Shared UI components like the header, footer, Calendly embed, and review list.
+- `data/` — JSON data used by the site (e.g. anonymized reviews).
+- `content/` — Markdown copy for easy editing of the hero text, service blurbs, and other site content.
+- `docs/` — Internal documentation for booking and payments setup, as well as a pre‑written pull request summary.
+- `middleware.ts` — Global middleware implementing optional Basic Auth. When `BASIC_AUTH_USER` and `BASIC_AUTH_PASS` environment variables are set, visitors must supply credentials.
+- `public/robots.txt` — Disallows all crawlers; combined with the `X‑Robots‑Tag` header in `vercel.json` to ensure unindexable staging.
+
+## Development
+
+Install dependencies and run the development server:
 
 ```bash
-# Install deps
 npm install
-
-# Dev
 npm run dev
-# Build
-npm run build
-# Start
-npm run start
 ```
 
-## Environment
-Copy `.env.example` → `.env.local` (for local dev) and set on Vercel:
+## Deployment
 
-- `BASIC_AUTH_USER`, `BASIC_AUTH_PASS`
-- (optional) `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_SECRET_KEY`
+The project is configured for deployment on Vercel’s Hobby (free) plan. Set the following environment variables:
 
-## Staging Privacy
-- `middleware.ts` enforces Basic Auth when envs are present.
-- `vercel.json` sets `X-Robots-Tag: noindex, nofollow`.
-- `public/robots.txt` disallows all crawling.
+- `BASIC_AUTH_USER` – username for Basic Auth (e.g. `demo`)
+- `BASIC_AUTH_PASS` – password for Basic Auth (e.g. `demo123`)
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` – optional Stripe test publishable key
+- `STRIPE_SECRET_KEY` – optional Stripe test secret key
 
-## Deployment (Vercel)
-1. Create or open your Vercel project.
-2. Import this GitHub repo; set the project root to `/` and framework to Next.js.
-3. Set environment variables.
-4. Deploy; confirm Basic Auth dialog and noindex headers.
-
-## Branching
-- Create `design-refresh` branch for work; open PR to `main`.
-
-## Calendly
-Embed is at `/availability`. Change URL in `components/CalendarEmbed.tsx` to switch providers.
-
-## Payments
-Stripe test placeholder at `/payments`. For a real flow, add Stripe Elements and server routes.
+See `docs/booking-setup.md` and `docs/payments-setup.md` for further instructions.
