@@ -1,4 +1,4 @@
-import ReviewList from '@/components/ReviewList';
+import ReviewList from '../../../components/ReviewList';
 
 export const metadata = {
   title: 'Reviews — VersaCraft',
