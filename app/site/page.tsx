@@ -1,8 +1,9 @@
 import Link from "next/link";
-import ReviewList from "@/components/ReviewList";
-
+import ReviewList from "../../components/ReviewList";
 export default function HomePage() {
   return (
+
+
     <main className="max-w-6xl mx-auto px-4 py-10 space-y-12">
       <section className="text-center space-y-6">
         <h1 className="text-4xl md:text-5xl font-semibold">Get it done, the right way.</h1>
