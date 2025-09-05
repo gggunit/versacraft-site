@@ -1,0 +1,5 @@
+- [ ] Swap Basic Auth credentials on Vercel (BASIC_AUTH_USER / BASIC_AUTH_PASS).
+- [ ] Add Stripe test keys if desired; wire Payment Element.
+- [ ] Replace synthesized reviews with selected anonymized quotes from your logs.
+- [ ] (Optional) Enable Vercel Authentication for staging.
+- [ ] Add screenshots to PR and tighten copy in `/content/copy.md`.

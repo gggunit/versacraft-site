@@ -1,0 +1,1 @@
+- 2025-09-05: Initial scaffold with App Router, Tailwind, Basic Auth, noindex, Calendly embed, Reviews, Pricing, Payments stub.

@@ -2,8 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    appDir: true,
+    typedRoutes: true,
   },
+  headers: async () => {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "Referrer-Policy", value: "no-referrer" }
+        ]
+      }
+    ]
+  }
 }
-
 export default nextConfig
