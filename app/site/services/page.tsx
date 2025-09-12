@@ -15,7 +15,7 @@ const secondary = [
 ];
 
 export default function ServicesPage() {
-  const Card = ({ title, blurb, href }) => (
+  const Card = ({ title, blurb, href }: { title: string; blurb: string; href: string }) => (
     <Link href={href} className="rounded-2xl border p-4 hover:shadow-sm block">
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="text-sm text-gray-600 mt-1">{blurb}</p>
