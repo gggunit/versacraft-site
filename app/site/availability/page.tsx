@@ -1,4 +1,4 @@
-import CalendarEmbed from '../../../components/CalendarEmbed';
+import CalendarEmbed from '@/components/CalendarEmbed';
 
 export default function AvailabilityPage() {
   return (

@@ -1,4 +1,4 @@
-import reviews from '../data/reviews.json';
+import reviews from '@/data/reviews.json';
 
 export default function ReviewList() {
   return (

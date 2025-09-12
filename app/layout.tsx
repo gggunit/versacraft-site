@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import Header from '../Header'
+import Header from '@/Header'
 
 export const metadata: Metadata = {
   title: 'VersaCraft Solutions',
