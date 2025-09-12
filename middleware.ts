@@ -8,9 +8,13 @@ export function middleware(req: NextRequest) {
 
   const auth = req.headers.get('authorization');
   if (auth?.startsWith('Basic ')) {
-    const [, encoded] = auth.split(' ');
-    const [u, p] = Buffer.from(encoded, 'base64').toString().split(':');
-    if (u === user && p === pass) return NextResponse.next();
+    try {
+      const [, encoded] = auth.split(' ');
+      const [u, p] = atob(encoded).split(':');
+      if (u === user && p === pass) return NextResponse.next();
+    } catch (error) {
+      // Invalid base64 or malformed auth header
+    }
   }
   return new NextResponse('Authentication required', {
     status: 401,
