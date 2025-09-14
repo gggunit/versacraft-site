@@ -1,23 +1,22 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export function middleware(req: NextRequest) {
-  const user = process.env.BASIC_AUTH_USER;
-  const pass = process.env.BASIC_AUTH_PASS;
-
-  if (!user || !pass) return NextResponse.next();
-
-  const auth = req.headers.get('authorization');
-  if (auth?.startsWith('Basic ')) {
-    const [, encoded] = auth.split(' ');
-    const [u, p] = Buffer.from(encoded, 'base64').toString().split(':');
-    if (u === user && p === pass) return NextResponse.next();
-  }
-  return new NextResponse('Authentication required', {
-    status: 401,
-    headers: { 'WWW-Authenticate': 'Basic realm="VersaCraft"' }
-  });
+// Simple middleware that just passes through all requests
+export function middleware(request: NextRequest) {
+  // For now, just pass through all requests
+  return NextResponse.next();
 }
 
+// Optional: specify which paths this middleware should run on
 export const config = {
-  matcher: ['/((?!_next|api|public|favicon.ico|robots.txt).*)']
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
 };

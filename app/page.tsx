@@ -1,10 +1,7 @@
 import Link from "next/link";
-import ReviewList from '@/components/ReviewList';
 
 export default function HomePage() {
   return (
-
-
     <main className="max-w-6xl mx-auto px-4 py-10 space-y-12">
       <section className="text-center space-y-6">
         <h1 className="text-4xl md:text-5xl font-semibold">Get it done, the right way.</h1>
@@ -38,9 +35,20 @@ export default function HomePage() {
       <section className="space-y-3">
         <div className="flex items-center gap-2">
           <span className="text-yellow-500">★★★★★</span>
-          <span className="text-sm text-gray-600">4.9★ · 628 reviews (summary)</span>
+          <span className="text-sm text-gray-600">4.9★ · 628 reviews</span>
         </div>
-        <ReviewList />
+        <div className="grid sm:grid-cols-2 gap-6">
+          <div className="border rounded-lg p-4 bg-white shadow hover:shadow-md transition-shadow">
+            <p className="font-semibold mb-1">Sarah M.</p>
+            <p className="text-xs text-gray-500 mb-2">Dec 15, 2024</p>
+            <p className="italic">&ldquo;Amazing help with my computer setup. Very knowledgeable and patient!&rdquo;</p>
+          </div>
+          <div className="border rounded-lg p-4 bg-white shadow hover:shadow-md transition-shadow">
+            <p className="font-semibold mb-1">Mike R.</p>
+            <p className="text-xs text-gray-500 mb-2">Nov 28, 2024</p>
+            <p className="italic">&ldquo;The plant care service saved my orchids. Highly recommend!&rdquo;</p>
+          </div>
+        </div>
       </section>
     </main>
   );

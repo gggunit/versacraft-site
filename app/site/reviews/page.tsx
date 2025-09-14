@@ -1,5 +1,5 @@
-import ReviewList from "../../components/ReviewList";
-
+// Force deploy trigger
+import ReviewList from '@/components/ReviewList';
 
 export const metadata = {
   title: 'Reviews — VersaCraft',
