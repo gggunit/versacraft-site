@@ -1,17 +1,17 @@
 import Link from "next/link";
 
 const primary = [
-  ["Computer Help (Remote)", "Friendly diagnostics, speed-ups, backups, wifi optimization.", "/services#computer"],
-  ["AI Automations / Smart Home", "Inbox rules, shortcuts, content ops, HomeKit/Nest.", "/services#ai"],
-  ["Outdoors & Plant Care", "Plant doctor; repotting, pruning, irrigation timers, orchid rescue.", "/services#plants"],
-  ["Reiki (Distance)", "Level 2 Reiki: calming, supportive sessions; non-medical; 30/60 min.", "/services#reiki"],
+  ["Computer Help (Remote)", "Friendly diagnostics, speed-ups, backups, wifi optimization.", "/site/services#computer"],
+  ["AI Automations / Smart Home", "Inbox rules, shortcuts, content ops, HomeKit/Nest.", "/site/services#ai"],
+  ["Outdoors & Plant Care", "Plant doctor; repotting, pruning, irrigation timers, orchid rescue.", "/site/services#plants"],
+  ["Reiki (Distance)", "Level 2 Reiki: calming, supportive sessions; non-medical; 30/60 min.", "/site/services#reiki"],
 ];
 
 const secondary = [
-  ["Mounting & Repairs", "TVs/art/shelves; stud-safe installs, tidy patch/paint.", "/services#mounting"],
-  ["Heavy Lifting", "Careful moves; stairs/elevators ok; no truck by default.", "/services#lifting"],
-  ["Light Carpentry", "Trim, shelves, small builds; precise finishes.", "/services#carpentry"],
-  ["Organization", "Closets/garages; systems you’ll keep.", "/services#org"],
+  ["Mounting & Repairs", "TVs/art/shelves; stud-safe installs, tidy patch/paint.", "/site/services#mounting"],
+  ["Heavy Lifting", "Careful moves; stairs/elevators ok; no truck by default.", "/site/services#lifting"],
+  ["Light Carpentry", "Trim, shelves, small builds; precise finishes.", "/site/services#carpentry"],
+  ["Organization", "Closets/garages; systems you'll keep.", "/site/services#org"],
 ];
 
 export default function ServicesPage() {
