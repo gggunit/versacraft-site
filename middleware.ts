@@ -1,2 +1,22 @@
-// Middleware completely removed to fix deployment
-// Will be re-added later with proper Edge Runtime support
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+// Simple middleware that just passes through all requests
+export function middleware(request: NextRequest) {
+  // For now, just pass through all requests
+  return NextResponse.next();
+}
+
+// Optional: specify which paths this middleware should run on
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+};

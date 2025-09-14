@@ -4,13 +4,13 @@ import Link from "next/link";
 import type { Route } from "next";
 
 const links = [
-  ["Home",        "/"            ],
-  ["Services",    "/services"    ],
-  ["Pricing",     "/pricing"     ],
-  ["Reviews",     "/reviews"     ],
-  ["Availability","/availability"],
-  ["Payments",    "/payments"    ],
-  ["Contact",     "/contact"     ],
+  ["Home",        "/"                ],
+  ["Services",    "/site/services"   ],
+  ["Pricing",     "/site/pricing"    ],
+  ["Reviews",     "/site/reviews"    ],
+  ["Availability","/site/availability"],
+  ["Payments",    "/site/payments"   ],
+  ["Contact",     "/site/contact"    ],
 ] as const satisfies ReadonlyArray<readonly [string, Route]>;
 
 export default function Header() {
