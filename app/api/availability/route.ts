@@ -12,20 +12,6 @@ const BUSINESS_HOURS = {
 
 const WORKING_DAYS = [1, 2, 3, 4, 5]; // Monday to Friday (0 = Sunday)
 
-interface CalendarEvent {
-  id: string;
-  summary: string;
-  start: {
-    dateTime: string;
-    timeZone: string;
-  };
-  end: {
-    dateTime: string;
-    timeZone: string;
-  };
-  status: string;
-}
-
 interface TimeSlot {
   time: string;
   available: boolean;
@@ -35,7 +21,7 @@ interface TimeSlot {
 /**
  * Generate available time slots for a given date
  */
-function generateTimeSlots(date: string, busyTimes: CalendarEvent[] = []): TimeSlot[] {
+function generateTimeSlots(date: string): TimeSlot[] {
   const slots: TimeSlot[] = [];
   const selectedDate = new Date(date);
   
@@ -57,26 +43,17 @@ function generateTimeSlots(date: string, busyTimes: CalendarEvent[] = []): TimeS
 
     const datetime = slotDate.toISOString();
     
-    // Check if this slot conflicts with any busy times
-    const isConflict = busyTimes.some(event => {
-      const eventStart = new Date(event.start.dateTime);
-      const eventEnd = new Date(event.end.dateTime);
-      const slotEnd = new Date(slotDate.getTime() + 60 * 60 * 1000); // 1 hour later
-      
-      return (
-        (slotDate >= eventStart && slotDate < eventEnd) ||
-        (slotEnd > eventStart && slotEnd <= eventEnd) ||
-        (slotDate <= eventStart && slotEnd >= eventEnd)
-      );
-    });
-
     // Don't show past time slots for today
     const now = new Date();
     const isPast = slotDate < now;
+    
+    // For now, mark some slots as busy for demo purposes
+    // In production, this would check your actual Google Calendar
+    const isDemoBlocked = hour === 10 || hour === 14; // Block 10 AM and 2 PM for demo
 
     slots.push({
       time: timeString,
-      available: !isConflict && !isPast,
+      available: !isPast && !isDemoBlocked,
       datetime
     });
   }
@@ -115,63 +92,20 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Prepare time range for Google Calendar API
-    const startOfDay = new Date(date);
-    startOfDay.setHours(0, 0, 0, 0);
+    // Generate time slots (temporarily without Google Calendar integration)
+    const timeSlots = generateTimeSlots(date);
     
-    const endOfDay = new Date(date);
-    endOfDay.setHours(23, 59, 59, 999);
-
-    let busyTimes: CalendarEvent[] = [];
-
-    try {
-      // Call Google Calendar API server-side to keep API key secure
-      const calendarResponse = await fetch(
-        `https://www.googleapis.com/calendar/v3/calendars/primary/events?` +
-        `key=${process.env.GOOGLE_API_KEY}&` +
-        `timeMin=${startOfDay.toISOString()}&` +
-        `timeMax=${endOfDay.toISOString()}&` +
-        `singleEvents=true&` +
-        `orderBy=startTime`
-      );
-
-      if (calendarResponse.ok) {
-        const calendarData = await calendarResponse.json();
-        
-        // Convert Google Calendar events to our format
-        busyTimes = (calendarData.items || [])
-          .filter((event: any) => event.start?.dateTime && event.end?.dateTime)
-          .map((event: any) => ({
-            id: event.id,
-            summary: event.summary || 'Busy',
-            start: {
-              dateTime: event.start.dateTime,
-              timeZone: event.start.timeZone || BUSINESS_HOURS.timezone
-            },
-            end: {
-              dateTime: event.end.dateTime,
-              timeZone: event.end.timeZone || BUSINESS_HOURS.timezone
-            },
-            status: event.status || 'confirmed'
-          }));
-
-        console.log(`✅ Found ${busyTimes.length} busy time(s) for ${date} from Google Calendar`);
-      } else {
-        console.warn('⚠️ Google Calendar API error, using basic availability');
-      }
-    } catch (error) {
-      console.error('❌ Error calling Google Calendar API:', error);
-      // Continue with empty busyTimes array - will show all slots as available
-    }
-
-    // Generate time slots based on busy times
-    const timeSlots = generateTimeSlots(date, busyTimes);
+    // Note: Google Calendar integration temporarily disabled
+    // Will be re-enabled once OAuth is properly configured
+    console.log('📅 Returning availability for:', date);
+    console.log('⚠️ Note: Using demo availability (Google Calendar integration pending OAuth setup)');
 
     return NextResponse.json({
       success: true,
       date,
       slots: timeSlots,
-      busyEventsFound: busyTimes.length
+      busyEventsFound: 0,
+      note: 'Currently showing demo availability. Google Calendar integration coming soon!'
     });
 
   } catch (error) {
