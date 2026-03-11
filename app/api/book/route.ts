@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createNotification } from '@/lib/notifications';
 
 // Force dynamic rendering for this API route
 export const dynamic = 'force-dynamic';
@@ -163,7 +164,34 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email
     const emailSent = await sendConfirmationEmail(booking);
-    
+
+    // Create notification for the business owner
+    createNotification(
+      'new_booking',
+      `New booking: ${booking.service}`,
+      `${booking.name} booked ${booking.service} on ${booking.date} at ${booking.time}`,
+      {
+        bookingId: eventId,
+        clientName: booking.name,
+        clientEmail: booking.email,
+        service: booking.service,
+        date: booking.date,
+        time: booking.time,
+      }
+    );
+
+    if (!emailSent) {
+      createNotification(
+        'email_failed',
+        `Email failed for ${booking.name}`,
+        `Confirmation email to ${booking.email} for ${booking.service} could not be sent.`,
+        {
+          bookingId: eventId,
+          clientEmail: booking.email,
+        }
+      );
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Booking confirmed! You\'ll receive a confirmation email shortly.',
